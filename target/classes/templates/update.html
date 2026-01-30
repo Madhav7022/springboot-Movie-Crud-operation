@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Bike</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        form input[type="text"],
+        form input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        form input:focus {
+            border-color: #00c3ff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00c3ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #009edb;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Update Bike</h1>
+        <form th:action="@{/update}" method="post" th:object="${bike}">
+            <input type="hidden" th:field="*{id}" />
+            <input type="text" th:field="*{model}" placeholder="Model">
+            <input type="text" th:field="*{brand}" placeholder="Brand">
+            <input type="text" th:field="*{color}" placeholder="Color">
+            <input type="text" th:field="*{imageUrl}" placeholder="Image URL">
+            <input type="text" th:field="*{description}" placeholder="Description">
+            <input type="number" step="0.01" th:field="*{price}" placeholder="Price">
+            <button type="submit">Update</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+<title>Insert title here</title>
+</head>
+<body>
+<div align="center">
+    <h1>Update Bike</h1>
+    <form th:action="@{/update}" method="post" th:object="${bike}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{model}" placeholder="Model"><br><br>
+        <input type="text" th:field="*{brand}" placeholder="Brand"><br><br>
+        <input type="text" th:field="*{color}" placeholder="Color"><br><br>
+        <input type="text" th:field="*{imageUrl}" placeholder="Image URL"><br><br>
+        <input type="text" th:field="*{description}" placeholder="Description"><br><br>
+        <input type="number" step="0.01" th:field="*{price}" placeholder="Price"><br><br>
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>

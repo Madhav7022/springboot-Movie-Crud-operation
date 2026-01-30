@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Rubik', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  div[align="center"] {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1100px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: #00ffe0;
+    text-shadow: 1px 1px 2px #000;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  th, td {
+    padding: 14px 20px;
+    text-align: center;
+  }
+
+  th {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #00ffc3;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+  }
+
+  tr:nth-child(even) td {
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #00ffe0;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  a:hover {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 198, 255, 0.4);
+  }
+
+  @media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    td {
+      text-align: right;
+      padding-left: 50%;
+      position: relative;
+    }
+
+    td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-weight: bold;
+      color: #00ffc3;
+      text-align: left;
+    }
+
+    td img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
+
+</head>
+<body>
+<div align="center">
+    <h1>Available Bikes</h1>
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Color</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        <tr th:each="bike : ${bikes}">
+            <td th:text="${bike.model}"></td>
+            <td th:text="${bike.brand}"></td>
+            <td th:text="${bike.color}"></td>
+            <td th:text="${bike.description}"></td>
+            <td><img th:src="${bike.imageUrl}" width="100" height="100"></td>
+            <td th:text="${bike.price}"></td>
+            <td><a th:href="@{/delete(id=${bike.id})}" onclick="return confirm('Are you sure?')">Delete</a></td>
+            <td><a th:href="@{/update(id=${bike.id})}">Update</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

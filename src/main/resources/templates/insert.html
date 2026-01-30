@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- Custom Styles -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1d2b64, #f8cdda);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  div[align="center"] {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  input::placeholder {
+    color: #e0e0e0;
+  }
+
+  input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px #ffffff80;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(to right, #36d1dc, #5b86e5);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(91, 134, 229, 0.4);
+  }
+
+  button:hover {
+    background: linear-gradient(to right, #5b86e5, #36d1dc);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(91, 134, 229, 0.6);
+  }
+
+  @media screen and (max-width: 480px) {
+    div[align="center"] {
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+    }
+  }
+</style>
+
+</head>
+<body>
+<div align="center">
+    <h1>Add Bike</h1>
+    <form th:action="@{/insert}" method="post" th:object="${bike}">
+        <input type="text" th:field="*{model}" placeholder="Model"><br><br>
+        <input type="text" th:field="*{brand}" placeholder="Brand"><br><br>
+        <input type="text" th:field="*{color}" placeholder="Color"><br><br>
+        <input type="text" th:field="*{imageUrl}" placeholder="Image URL"><br><br>
+        <input type="text" th:field="*{description}" placeholder="Description"><br><br>
+        <input type="number" step="0.01" th:field="*{price}" placeholder="Price"><br><br>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+</body>
+</html>
